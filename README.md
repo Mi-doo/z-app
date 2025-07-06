@@ -16,13 +16,6 @@ $ npm install
 $ npm run dev
 ```
 
-## Run tests
-
-```bash
-# unit tests
-$ npm  test
-```
-
 ## Compile and run the Back end
 
 ```bash

@@ -1,5 +1,11 @@
 import React from "react";
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import {
+  render,
+  screen,
+  fireEvent,
+  within,
+  waitFor,
+} from "@testing-library/react";
 import axios from "axios";
 import App from "./App";
 
@@ -30,7 +36,9 @@ describe("App component", () => {
     fireEvent.click(screen.getByRole("button", { name: /Find Slots/i }));
 
     await waitFor(() => {
-      expect(screen.getByText(/7\/6\/2025/i)).toBeInTheDocument();
+      const table = screen.getByRole("table");
+      const data = within(table).getByText(/7\/6\/2025, 12:00:00 PM/);
+      expect(data).toBeInTheDocument();
     });
   });
 
@@ -43,8 +51,7 @@ describe("App component", () => {
 
     fireEvent.click(screen.getByRole("button", { name: /Find Slots/i }));
 
-    await waitFor(() => {
-      expect(screen.getByText(/Something went wrong/i)).toBeInTheDocument();
-    });
+    const message = await screen.findByText(/Something went wrong/i);
+    expect(message).toBeInTheDocument();
   });
 });

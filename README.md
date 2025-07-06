@@ -3,7 +3,7 @@
 Fullstack app to track available slots between team members
 
 ## Project setup
-Download an  the command below for both front and back 
+Download and run  the command below for both front and back 
 
 ```bash
 $ npm install
